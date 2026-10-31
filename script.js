@@ -51,7 +51,7 @@ function render() {
   const remaining = todos.filter((t) => !t.done).length;
   count.textContent = todos.length
     ? `${remaining} of ${todos.length} task${todos.length === 1 ? "" : "s"} remaining`
-    : "No tasks yet. Add one above!";
+    : "No tasks yet… eerily quiet 👻";
 }
 
 function addTodo(text) {
