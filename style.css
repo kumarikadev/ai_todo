@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
   --bg: #0b0710;
   --card: rgba(24, 16, 32, 0.85);
@@ -48,7 +50,7 @@ body {
 
 /* Hanging spider */
 .app::before {
-  content: "🕷️";
+  content: "\1F577\FE0F";
   position: absolute;
   top: -48px;
   right: 36px;
@@ -108,22 +110,125 @@ h1 {
   box-shadow: 0 0 0 3px rgba(138, 77, 255, 0.25);
 }
 
-.todo-form button {
-  padding: 12px 20px;
-  font: inherit;
-  font-weight: 600;
+/* Cartoon 3D pumpkin Add button */
+.pumpkin-btn {
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  width: 92px;
+  height: 72px;
+  padding: 0;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--pumpkin), var(--pumpkin-dark));
-  color: #1a0d00;
+  background: transparent;
   cursor: pointer;
-  box-shadow: 0 0 16px rgba(255, 122, 24, 0.4);
-  transition: transform 0.15s, box-shadow 0.15s;
+  filter: drop-shadow(0 6px 0 rgba(60, 20, 0, 0.55)) drop-shadow(0 0 14px rgba(255, 122, 24, 0.45));
+  animation: pumpkin-bob 2.4s ease-in-out infinite;
+  transform-origin: 50% 100%;
 }
 
-.todo-form button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 24px rgba(255, 122, 24, 0.65);
+.pumpkin {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pumpkin .lobe {
+  fill: url(#lobe);
+  stroke: #3a1500;
+  stroke-width: 2.5;
+}
+
+.pumpkin .lobe.back {
+  fill: url(#lobe-back);
+}
+
+.pumpkin .stem {
+  fill: #5b8a2b;
+  stroke: #1f3a0d;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.pumpkin .leaf {
+  fill: #7cc443;
+  stroke: #1f3a0d;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transform-origin: 55px 12px;
+  animation: leaf-sway 2.4s ease-in-out infinite;
+}
+
+.pumpkin .shine {
+  fill: #fff;
+  opacity: 0.75;
+}
+
+.pumpkin .shine.small {
+  opacity: 0.5;
+}
+
+.pumpkin-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56%;
+  transform: translateY(-50%);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: #fff4e0;
+  /* Chunky cartoon outline */
+  text-shadow:
+    -2px -2px 0 #3a1500, 2px -2px 0 #3a1500,
+    -2px 2px 0 #3a1500, 2px 2px 0 #3a1500,
+    0 -2px 0 #3a1500, 0 2px 0 #3a1500,
+    -2px 0 0 #3a1500, 2px 0 0 #3a1500;
+  pointer-events: none;
+}
+
+/* Idle: gentle squash-and-stretch bounce */
+@keyframes pumpkin-bob {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  40% { transform: translateY(-4px) scale(0.97, 1.03); }
+  55% { transform: translateY(0) scale(1.04, 0.96); }
+  70% { transform: translateY(0) scale(1, 1); }
+}
+
+@keyframes leaf-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-12deg); }
+}
+
+/* Hover: excited wiggle */
+@keyframes pumpkin-wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1.08); }
+  25% { transform: rotate(-7deg) scale(1.08); }
+  75% { transform: rotate(7deg) scale(1.08); }
+}
+
+.pumpkin-btn:hover,
+.pumpkin-btn:focus-visible {
+  animation: pumpkin-wiggle 0.45s ease-in-out infinite;
+  filter: drop-shadow(0 6px 0 rgba(60, 20, 0, 0.55)) drop-shadow(0 0 22px rgba(255, 140, 40, 0.8));
+}
+
+.pumpkin-btn:focus-visible {
+  outline: none;
+}
+
+/* Click: squish */
+.pumpkin-btn:active {
+  animation: none;
+  transform: scale(1.12, 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pumpkin-btn,
+  .pumpkin-btn:hover,
+  .pumpkin .leaf {
+    animation: none;
+  }
 }
 
 .todo-list {

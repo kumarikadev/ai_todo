@@ -15,7 +15,36 @@
 
     <form id="todo-form" class="todo-form">
       <input id="todo-input" type="text" placeholder="Add a wicked task…" autocomplete="off" required>
-      <button type="submit">Add</button>
+      <button type="submit" class="pumpkin-btn" aria-label="Add task">
+        <svg class="pumpkin" viewBox="0 0 100 80" aria-hidden="true">
+          <defs>
+            <radialGradient id="lobe" cx="35%" cy="30%" r="75%">
+              <stop offset="0" stop-color="#ffc06b"/>
+              <stop offset="0.45" stop-color="#ff8a1f"/>
+              <stop offset="1" stop-color="#d94f00"/>
+            </radialGradient>
+            <radialGradient id="lobe-back" cx="40%" cy="30%" r="80%">
+              <stop offset="0" stop-color="#ff9a3a"/>
+              <stop offset="1" stop-color="#b84000"/>
+            </radialGradient>
+          </defs>
+          <!-- Stem and leaf -->
+          <path class="stem" d="M47 20 C46 12 48 6 54 3 L57 7 C53 9 52 14 53 20 Z"/>
+          <path class="leaf" d="M54 10 C60 2 70 3 74 7 C68 8 62 12 55 13 Z"/>
+          <!-- Back lobes -->
+          <ellipse class="lobe back" cx="24" cy="48" rx="20" ry="26"/>
+          <ellipse class="lobe back" cx="76" cy="48" rx="20" ry="26"/>
+          <!-- Middle lobes -->
+          <ellipse class="lobe" cx="36" cy="48" rx="18" ry="28"/>
+          <ellipse class="lobe" cx="64" cy="48" rx="18" ry="28"/>
+          <!-- Front lobe -->
+          <ellipse class="lobe" cx="50" cy="48" rx="16" ry="29"/>
+          <!-- Glossy highlights -->
+          <ellipse class="shine" cx="40" cy="32" rx="5" ry="9" transform="rotate(-20 40 32)"/>
+          <ellipse class="shine small" cx="27" cy="38" rx="2.5" ry="5" transform="rotate(-20 27 38)"/>
+        </svg>
+        <span class="pumpkin-label">Add</span>
+      </button>
     </form>
 
     <ul id="todo-list" class="todo-list"></ul>
